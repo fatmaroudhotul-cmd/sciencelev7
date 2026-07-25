@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔬 Essence of Science & Measurement | Grade 7</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6C3CE1;
+            --primary-light: #8B5CF6;
+            --secondary: #F59E0B;
+            --accent: #EC4899;
+            --bg: #F0F4FF;
+            --card-bg: #FFFFFF;
+            --text: #1E1B4B;
+            --text-light: #4B456B;
+            --shadow: 0 20px 60px rgba(108, 60, 225, 0.15);
+            --radius: 24px;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E8ECF8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-blobs span {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.20;
+            animation: floatBlob 20s ease-in-out infinite alternate;
+        }
+        .bg-blobs span:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: #8B5CF6;
+            top: -200px;
+            left: -200px;
+            animation-duration: 22s;
+        }
+        .bg-blobs span:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: #F59E0B;
+            bottom: -150px;
+            right: -150px;
+            animation-duration: 26s;
+            animation-delay: 2s;
+        }
+        .bg-blobs span:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #EC4899;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 30s;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(60px, -40px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+            100% {
+                transform: translate(40px, -20px) scale(1.05);
+            }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 10px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo i {
+            font-size: 34px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--text-light);
+            padding: 8px 18px;
+            border-radius: 40px;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(108, 60, 225, 0.30);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(108, 60, 225, 0.12);
+            color: var(--primary);
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(108, 60, 225, 0.15);
+        }
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: clamp(16px, 1.8vw, 22px);
+            color: var(--text-light);
+            max-width: 680px;
+            margin: 16px auto 10px;
+            font-weight: 600;
+        }
+        .hero .quran {
+            font-style: italic;
+            font-size: 15px;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            padding: 16px 28px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 1px solid rgba(108, 60, 225, 0.10);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            margin-top: 6px;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-size: clamp(28px, 3.6vw, 42px);
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 0.8em;
+            color: var(--primary);
+        }
+        .section-sub {
+            color: var(--text-light);
+            font-size: 17px;
+            margin-bottom: 32px;
+            font-weight: 600;
+            border-left: 4px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(108, 60, 225, 0.06);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 72px rgba(108, 60, 225, 0.18);
+            border-color: rgba(108, 60, 225, 0.15);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .card p {
+            color: var(--text-light);
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .card .tag {
+            display: inline-block;
+            margin-top: 12px;
+            background: rgba(108, 60, 225, 0.08);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        /* clickable card */
+        .card.clickable {
+            cursor: pointer;
+        }
+        .card.clickable:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== SCIENTIST CARD ===== */
+        .scientist-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 20px 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(108, 60, 225, 0.06);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .scientist-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 28px 72px rgba(108, 60, 225, 0.18);
+            border-color: rgba(108, 60, 225, 0.20);
+        }
+        .scientist-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 36px;
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(108, 60, 225, 0.25);
+        }
+        .scientist-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+        .scientist-card .field {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 700;
+            background: rgba(108, 60, 225, 0.08);
+            padding: 2px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .scientist-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        .scientist-card .flag {
+            font-size: 28px;
+            display: block;
+            margin-top: 6px;
+        }
+
+        /* ===== BRANCH BADGE ===== */
+        .branch-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .branch-physics {
+            background: #DBEAFE;
+            color: #1D4ED8;
+        }
+        .branch-biology {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        .branch-chemistry {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        .branch-earth {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        .branch-astronomy {
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+
+        /* ===== SUB-BRANCH GROUP ===== */
+        .sub-branch-group {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(108, 60, 225, 0.06);
+            margin-top: 28px;
+        }
+        .sub-branch-group h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sub-branch-group .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .sub-branch-item {
+            background: #F8FAFC;
+            border-radius: 16px;
+            padding: 12px 14px;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        .sub-branch-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+        .sub-branch-item strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 800;
+        }
+        .sub-branch-item span {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ===== POPUP MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #fff;
+            border-radius: 32px;
+            max-width: 560px;
+            width: 100%;
+            padding: 36px 32px 28px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.30);
+            animation: slideUp 0.35s ease;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-box .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-box .close-btn:hover {
+            background: #F1F5F9;
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+        .modal-box .modal-icon {
+            font-size: 56px;
+            margin-bottom: 8px;
+        }
+        .modal-box h2 {
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+        .modal-box .modal-sub {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+        .modal-box p {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .modal-box .modal-detail {
+            background: #F8FAFC;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 16px 0 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .modal-box .modal-detail strong {
+            color: var(--text);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== QUIZ / EVALUASI ===== */
+        .quiz-container {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(108, 60, 225, 0.06);
+        }
+        .quiz-question {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+        .quiz-question .q-num {
+            background: var(--primary);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 600px) {
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        .quiz-options button {
+            background: #F1F5F9;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-options button:hover {
+            background: #E8ECF8;
+            transform: scale(1.02);
+        }
+        .quiz-options button.correct {
+            background: #D1FAE5;
+            border-color: #10B981;
+            color: #065F46;
+        }
+        .quiz-options button.wrong {
+            background: #FEE2E2;
+            border-color: #EF4444;
+            color: #991B1B;
+        }
+        .quiz-options button:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+        .quiz-options button .opt-label {
+            font-weight: 900;
+            color: var(--primary);
+            width: 28px;
+            height: 28px;
+            background: rgba(108, 60, 225, 0.08);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .quiz-feedback {
+            margin-top: 18px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-weight: 700;
+            display: none;
+            font-size: 16px;
+        }
+        .quiz-feedback.show {
+            display: block;
+        }
+        .quiz-feedback.success {
+            background: #D1FAE5;
+            color: #065F46;
+            border-left: 6px solid #10B981;
+        }
+        .quiz-feedback.error {
+            background: #FEE2E2;
+            color: #991B1B;
+            border-left: 6px solid #EF4444;
+        }
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .quiz-progress .dot {
+            width: 40px;
+            height: 6px;
+            border-radius: 10px;
+            background: #E2E8F0;
+            transition: var(--transition);
+        }
+        .quiz-progress .dot.done {
+            background: var(--primary);
+        }
+        .quiz-progress .dot.active {
+            background: var(--secondary);
+            width: 56px;
+        }
+        .quiz-progress .dot.correct-dot {
+            background: #10B981;
+        }
+        .quiz-progress .dot.wrong-dot {
+            background: #EF4444;
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 22px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .quiz-nav button {
+            background: var(--primary);
+            border: none;
+            color: #fff;
+            font-weight: 800;
+            font-family: 'Nunito', sans-serif;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(108, 60, 225, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quiz-nav button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(108, 60, 225, 0.35);
+        }
+        .quiz-nav button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .quiz-nav button.secondary {
+            background: #E2E8F0;
+            color: var(--text);
+            box-shadow: none;
+        }
+        .quiz-nav button.secondary:hover {
+            background: #CBD5E1;
+            transform: translateY(-2px);
+        }
+        .quiz-score {
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--text);
+        }
+        .quiz-score span {
+            color: var(--primary);
+            font-size: 26px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .sub-branch-group .branch-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            .modal-box {
+                padding: 28px 20px;
+                margin: 12px;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+        }
+        @media (max-width: 480px) {
+            .sub-branch-group .branch-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .mt-12 {
+            margin-top: 48px;
+        }
+        .mt-8 {
+            margin-top: 32px;
+        }
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 15px;
+            border-top: 1px solid rgba(108, 60, 225, 0.06);
+            margin-top: 40px;
+        }
+        .footer i {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BACKGROUND BLOBS ===== -->
+    <div class="bg-blobs">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box" id="modalBox">
+            <button class="close-btn" id="modalCloseBtn">&times;</button>
+            <div class="modal-icon" id="modalIcon">🧪</div>
+            <h2 id="modalTitle">Title</h2>
+            <div class="modal-sub" id="modalSub">Subtitle</div>
+            <div id="modalBody">
+                <p>Content goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTAINER ===== -->
+    <div class="container">
+
+        <!-- TOP BAR -->
+        <div class="top-bar">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>Sci<span style="color:var(--secondary);">ence</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#definition" class="active">Definition</a>
+                <a href="#branches">Branches</a>
+                <a href="#scientists">Scientists</a>
+                <a href="#quiz">Quiz</a>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="badge"><i class="fas fa-graduation-cap"></i> Grade 7 · Natural Science</div>
+            <h1>The Essence of Science &amp; Measurement</h1>
+            <p>Discover how everything in the universe is connected through the lens of natural science.</p>
+            <div class="quran">
+                <i class="fas fa-quote-left" style="color:var(--primary);margin-right:8px;"></i>
+                “Indeed, in the creation of the heavens and the Earth, and the alternation of night and day are signs for people of understanding.”
+                <span style="display:block;font-weight:700;font-style:normal;font-size:13px;color:var(--text-light);">— Surah Ali 'Imran 3:190</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: DEFINITION & OBJECT OF NATURAL SCIENCE             -->
+        <!-- ============================================================ -->
+        <section id="definition">
+            <div class="section-title">
+                <i class="fas fa-bullseye" style="color:var(--accent);"></i>
+                Definition &amp; Object of Natural Science
+            </div>
+            <div class="section-sub">
+                What is science, and what does it study? Let's break it down.
+            </div>
+
+            <div class="grid-2">
+                <div class="card clickable" data-modal-title="🔬 What is Natural Science?" data-modal-icon="🔬" data-modal-sub="The systematic study of the natural world" data-modal-body="
+                <p><strong>Natural science</strong> is a branch of science that seeks to understand the natural world through observation, experimentation, and reasoning.</p>
+                <div class='modal-detail'><strong>Key characteristics:</strong><br>
+                • Based on <strong>empirical evidence</strong> (observed and measured)<br>
+                • Uses the <strong>scientific method</strong> (question → hypothesis → experiment → conclusion)<br>
+                • Aims to discover <strong>patterns and laws</strong> in nature<br>
+                • Always open to <strong>revision</strong> with new evidence
+                </div>
+                <p style='margin-top:12px;'>Natural science helps us understand the universe — from the smallest particle to the largest galaxy.</p>
+                ">
+                    <span class="icon">🔬</span>
+                    <h3>What is Natural Science?</h3>
+                    <p>The systematic study of the natural world through observation and experimentation.</p>
+                    <span class="tag"><i class="fas fa-lightbulb"></i> Click to learn more</span>
+                </div>
+
+                <div class="card clickable" data-modal-title="🌍 Objects of Natural Science" data-modal-icon="🌍" data-modal-sub="What does natural science study?" data-modal-body="
+                <p>Natural science studies <strong>everything in the physical universe</strong> — both living and non-living.</p>
+                <div class='modal-detail'><strong>Main objects of study:</strong><br>
+                • <strong>Matter</strong> — anything that has mass and takes up space<br>
+                • <strong>Energy</strong> — the ability to do work (light, heat, motion, etc.)<br>
+                • <strong>Living organisms</strong> — from bacteria to plants and animals<br>
+                • <strong>Earth &amp; its systems</strong> — land, water, air, and climate<br>
+                • <strong>The universe</strong> — stars, planets, galaxies, and beyond
+                </div>
+                <p style='margin-top:12px;'>In short: <strong>everything!</strong> Natural science seeks to answer the <em>how</em> and <em>why</em> of the natural world.</p>
+                ">
+                    <span class="icon">🌍</span>
+                    <h3>Objects of Natural Science</h3>
+                    <p>Matter, energy, living things, Earth, and the entire universe.</p>
+                    <span class="tag"><i class="fas fa-lightbulb"></i> Click to explore</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2: BRANCHES OF SCIENCE                                -->
+        <!-- ============================================================ -->
+        <section id="branches" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-sitemap" style="color:var(--secondary);"></i>
+                Branches of Natural Science
+            </div>
+            <div class="section-sub">
+                The five major branches — each one explores a different aspect of our universe.
+            </div>
+
+            <div class="grid-3">
+                <!-- PHYSICS -->
+                <div class="card clickable" data-modal-title="⚡ Physics" data-modal-icon="⚡" data-modal-sub="The study of matter, energy, and their interactions" data-modal-body="
+                <p><strong>Physics</strong> is the branch of science that studies matter, energy, force, motion, and the fundamental laws of the universe.</p>
+                <div class='modal-detail'><strong>What physicists study:</strong><br>
+                • Motion &amp; forces (mechanics)<br>
+                • Light &amp; optics<br>
+                • Electricity &amp; magnetism<br>
+                • Sound &amp; waves<br>
+                • Heat &amp; thermodynamics<br>
+                • Atomic &amp; nuclear physics
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-physics'>Physics</span> — From the motion of planets to the tiniest particles!</p>
+                ">
+                    <span class="icon">⚡</span>
+                    <h3>Physics</h3>
+                    <p>Matter, energy, force, motion, light, and sound.</p>
+                    <span class="branch-badge branch-physics">Physics</span>
+                </div>
+
+                <!-- BIOLOGY -->
+                <div class="card clickable" data-modal-title="🧬 Biology" data-modal-icon="🧬" data-modal-sub="The study of life and living organisms" data-modal-body="
+                <p><strong>Biology</strong> is the branch of science that studies living things — from microscopic bacteria to giant whales.</p>
+                <div class='modal-detail'><strong>What biologists study:</strong><br>
+                • Plants (botany)<br>
+                • Animals (zoology)<br>
+                • Microscopic organisms (microbiology)<br>
+                • Human body &amp; health (medicine)<br>
+                • Genetics &amp; DNA<br>
+                • Ecology &amp; ecosystems
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-biology'>Biology</span> — Life is everywhere, and biology helps us understand it.</p>
+                ">
+                    <span class="icon">🧬</span>
+                    <h3>Biology</h3>
+                    <p>Living things — plants, animals, humans, and microbes.</p>
+                    <span class="branch-badge branch-biology">Biology</span>
+                </div>
+
+                <!-- CHEMISTRY -->
+                <div class="card clickable" data-modal-title="🧪 Chemistry" data-modal-icon="🧪" data-modal-sub="The study of substances and their reactions" data-modal-body="
+                <p><strong>Chemistry</strong> is the branch of science that studies the composition, properties, and reactions of substances.</p>
+                <div class='modal-detail'><strong>What chemists study:</strong><br>
+                • Elements &amp; compounds<br>
+                • Chemical reactions &amp; changes<br>
+                • Organic chemistry (carbon-based compounds)<br>
+                • Inorganic chemistry (minerals, metals)<br>
+                • Physical chemistry (properties of matter)<br>
+                • Biochemistry (chemistry of life)
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span> — Everything around us is made of chemicals!</p>
+                ">
+                    <span class="icon">🧪</span>
+                    <h3>Chemistry</h3>
+                    <p>Substances, properties, reactions, and chemical changes.</p>
+                    <span class="branch-badge branch-chemistry">Chemistry</span>
+                </div>
+
+                <!-- EARTH SCIENCE -->
+                <div class="card clickable" data-modal-title="🌋 Earth Science" data-modal-icon="🌋" data-modal-sub="The study of Earth and its processes" data-modal-body="
+                <p><strong>Earth Science</strong> is the branch of science that studies the Earth — its land, water, air, and the processes that shape it.</p>
+                <div class='modal-detail'><strong>What Earth scientists study:</strong><br>
+                • Geology — rocks, minerals, Earth's structure<br>
+                • Meteorology — atmosphere, weather, climate<br>
+                • Hydrology — water on Earth (rivers, lakes, oceans)<br>
+                • Oceanography — oceans &amp; marine life<br>
+                • Environmental science — how humans affect Earth
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-earth'>Earth Science</span> — Our home planet is full of wonders!</p>
+                ">
+                    <span class="icon">🌋</span>
+                    <h3>Earth Science</h3>
+                    <p>Earth's land, water, atmosphere, and natural processes.</p>
+                    <span class="branch-badge branch-earth">Earth Science</span>
+                </div>
+
+                <!-- ASTRONOMY -->
+                <div class="card clickable" data-modal-title="🚀 Astronomy" data-modal-icon="🚀" data-modal-sub="The study of the universe beyond Earth" data-modal-body="
+                <p><strong>Astronomy</strong> is the branch of science that studies everything beyond Earth — stars, planets, galaxies, and the cosmos.</p>
+                <div class='modal-detail'><strong>What astronomers study:</strong><br>
+                • Planets, moons, and the solar system (planetary astronomy)<br>
+                • Stars &amp; their life cycles (stellar astronomy)<br>
+                • Galaxies &amp; the universe as a whole (cosmology)<br>
+                • Black holes, nebulae, and exotic objects<br>
+                • The origin and fate of the universe
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-astronomy'>Astronomy</span> — The universe is vast, and we are just beginning to explore it.</p>
+                ">
+                    <span class="icon">🚀</span>
+                    <h3>Astronomy</h3>
+                    <p>Stars, planets, galaxies, and everything in space.</p>
+                    <span class="branch-badge branch-astronomy">Astronomy</span>
+                </div>
+
+                <!-- INTERCONNECTEDNESS -->
+                <div class="card" style="background:linear-gradient(135deg, #F0F4FF, #EDE9FE);border:2px dashed var(--primary-light);">
+                    <span class="icon">🌌</span>
+                    <h3 style="color:var(--primary);">Everything is Connected!</h3>
+                    <p>Physics, Biology, Chemistry, Earth Science, and Astronomy — they all work together to help us understand the universe.</p>
+                    <span class="tag" style="background:var(--primary);color:#fff;"><i class="fas fa-heart"></i> Interdisciplinary</span>
+                </div>
+            </div>
+
+            <!-- ===== SUB-BRANCHES GROUPED BY MAJOR BRANCH ===== -->
+            <div class="sub-branch-group">
+                <h4><i class="fas fa-code-branch" style="color:var(--secondary);"></i> Sub‑branches organised by Major Branch</h4>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+
+                    <!-- Physics -->
+                    <div style="background:#F8FAFC; border-radius:16px; padding:16px; border-top:4px solid #1D4ED8;">
+                        <h5 style="font-size:18px; font-weight:800; color:#1D4ED8; margin-bottom:10px;">⚡ Physics</h5>
+                        <div class="sub-branch-item"><strong>Mechanics</strong><span>Motion, forces, energy</span></div>
+                        <div class="sub-branch-item"><strong>Optics</strong><span>Light, reflection, refraction</span></div>
+                        <div class="sub-branch-item"><strong>Electricity</strong><span>Current, circuits, magnetism</span></div>
+                    </div>
+
+                    <!-- Biology -->
+                    <div style="background:#F8FAFC; border-radius:16px; padding:16px; border-top:4px solid #065F46;">
+                        <h5 style="font-size:18px; font-weight:800; color:#065F46; margin-bottom:10px;">🧬 Biology</h5>
+                        <div class="sub-branch-item"><strong>Zoology</strong><span>Animals, behaviour, life processes</span></div>
+                        <div class="sub-branch-item"><strong>Botany</strong><span>Plants, structure, growth</span></div>
+                        <div class="sub-branch-item"><strong>Microbiology</strong><span>Microscopic organisms (bacteria, fungi)</span></div>
+                    </div>
+
+                    <!-- Chemistry -->
+                    <div style="background:#F8FAFC; border-radius:16px; padding:16px; border-top:4px solid #991B1B;">
+                        <h5 style="font-size:18px; font-weight:800; color:#991B1B; margin-bottom:10px;">🧪 Chemistry</h5>
+                        <div class="sub-branch-item"><strong>Organic Chemistry</strong><span>Carbon compounds in living things</span></div>
+                        <div class="sub-branch-item"><strong>Inorganic Chemistry</strong><span>Minerals, metals, non‑carbon</span></div>
+                        <div class="sub-branch-item"><strong>Physical Chemistry</strong><span>Properties of matter, chemical changes</span></div>
+                    </div>
+
+                    <!-- Earth Science -->
+                    <div style="background:#F8FAFC; border-radius:16px; padding:16px; border-top:4px solid #92400E;">
+                        <h5 style="font-size:18px; font-weight:800; color:#92400E; margin-bottom:10px;">🌍 Earth Science</h5>
+                        <div class="sub-branch-item"><strong>Meteorology</strong><span>Atmosphere, weather, climate</span></div>
+                        <div class="sub-branch-item"><strong>Geology</strong><span>Rocks, minerals, Earth's structure</span></div>
+                        <div class="sub-branch-item"><strong>Hydrology</strong><span>Water on Earth (rivers, lakes, oceans)</span></div>
+                    </div>
+
+                    <!-- Astronomy -->
+                    <div style="background:#F8FAFC; border-radius:16px; padding:16px; border-top:4px solid #3730A3;">
+                        <h5 style="font-size:18px; font-weight:800; color:#3730A3; margin-bottom:10px;">🚀 Astronomy</h5>
+                        <div class="sub-branch-item"><strong>Planetary Astronomy</strong><span>Planets, moons, solar system</span></div>
+                        <div class="sub-branch-item"><strong>Stellar Astronomy</strong><span>Stars, life cycles, stellar objects</span></div>
+                        <div class="sub-branch-item"><strong>Cosmology</strong><span>Universe, galaxies, origin</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: SCIENTISTS                                        -->
+        <!-- ============================================================ -->
+        <section id="scientists" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-user-graduate" style="color:var(--primary);"></i>
+                Muslim &amp; Indonesian Scientists
+            </div>
+            <div class="section-sub">
+                Learn from the past, be inspired for the future. These scientists changed the world.
+            </div>
+
+            <div class="grid-3">
+                <!-- Al-Khwarizmi -->
+                <div class="scientist-card" data-modal-title="📐 Al-Khwarizmi" data-modal-icon="📐" data-modal-sub="Father of Algebra" data-modal-body="
+                <p><strong>Al-Khwarizmi</strong> (c. 780–850 CE) was a Persian mathematician, astronomer, and geographer. He is known as the 'father of algebra'.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Wrote the book <em>Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala</em> — the foundation of algebra.<br>
+                • Introduced the Hindu-Arabic numeral system to the Islamic world.<br>
+                • Made important contributions to astronomy and geography.<br>
+                • His name gave us the word <strong>'algorithm'</strong>.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-astronomy'>Mathematics</span> <span class='branch-badge branch-earth'>Astronomy</span></p>
+                ">
+                    <div class="avatar">📐</div>
+                    <h4>Al-Khwarizmi</h4>
+                    <span class="field">Mathematics · Astronomy</span>
+                    <p>Father of Algebra &amp; Algorithms</p>
+                    <span class="flag">🇺🇿</span>
+                </div>
+
+                <!-- Ibn Al-Haytham -->
+                <div class="scientist-card" data-modal-title="👁 Ibn Al-Haytham" data-modal-icon="👁" data-modal-sub="The Father of Modern Optics" data-modal-body="
+                <p><strong>Ibn Al-Haytham</strong> (c. 965–1040 CE) was an Arab polymath who made groundbreaking contributions to optics, physics, and the scientific method.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Discovered how vision works — light enters the eye, not rays emitted from it.<br>
+                • Wrote the <em>Book of Optics</em>, which revolutionized the field.<br>
+                • Pioneered the use of the <strong>scientific method</strong> (observation, hypothesis, experiment).<br>
+                • Made advances in astronomy, mathematics, and engineering.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-physics'>Physics</span> <span class='branch-badge branch-astronomy'>Optics</span></p>
+                ">
+                    <div class="avatar">👁</div>
+                    <h4>Ibn Al-Haytham</h4>
+                    <span class="field">Physics · Optics</span>
+                    <p>Father of Modern Optics</p>
+                    <span class="flag">🇮🇶</span>
+                </div>
+
+                <!-- Al-Razi -->
+                <div class="scientist-card" data-modal-title="💊 Al-Razi" data-modal-icon="💊" data-modal-sub="Great Physician &amp; Chemist" data-modal-body="
+                <p><strong>Al-Razi</strong> (c. 865–925 CE) was a Persian physician, chemist, and philosopher. He is considered one of the greatest medical minds of the Islamic Golden Age.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Wrote over 200 books on medicine and chemistry.<br>
+                • Discovered sulfuric acid and ethanol (alcohol).<br>
+                • Pioneered the use of <strong>clinical observation</strong> in medicine.<br>
+                • Distinguished smallpox from measles.<br>
+                • His book <em>Al-Hawi</em> (The Comprehensive Book) was a medical encyclopedia.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span> <span class='branch-badge branch-biology'>Medicine</span></p>
+                ">
+                    <div class="avatar">💊</div>
+                    <h4>Al-Razi</h4>
+                    <span class="field">Medicine · Chemistry</span>
+                    <p>Great Physician &amp; Researcher</p>
+                    <span class="flag">🇮🇷</span>
+                </div>
+
+                <!-- Ibn Battuta -->
+                <div class="scientist-card" data-modal-title="🧭 Ibn Battuta" data-modal-icon="🧭" data-modal-sub="The Great Traveler" data-modal-body="
+                <p><strong>Ibn Battuta</strong> (1304–1369 CE) was a Moroccan traveler and explorer who journeyed across the Islamic world and beyond.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Traveled over 75,000 miles — more than any other pre-modern explorer.<br>
+                • Wrote the <em>Rihla</em> (The Journey), a detailed account of his travels.<br>
+                • Recorded observations about geography, culture, and natural history.<br>
+                • Visited West Africa, the Middle East, India, Southeast Asia, and China.<br>
+                • His work is a valuable historical and geographical source.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-earth'>Geography</span> <span class='branch-badge branch-earth'>History</span></p>
+                ">
+                    <div class="avatar">🧭</div>
+                    <h4>Ibn Battuta</h4>
+                    <span class="field">Geography · Exploration</span>
+                    <p>The Great Traveler</p>
+                    <span class="flag">🇲🇦</span>
+                </div>
+
+                <!-- Al-Biruni -->
+                <div class="scientist-card" data-modal-title="🌍 Al-Biruni" data-modal-icon="🌍" data-modal-sub="The Universal Scholar" data-modal-body="
+                <p><strong>Al-Biruni</strong> (973–1048 CE) was a Khwarazmian polymath who excelled in astronomy, geography, geology, mathematics, and many other fields.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Calculated the Earth's circumference with remarkable accuracy.<br>
+                • Wrote extensively on astronomy, including the motion of planets.<br>
+                • Studied geology and the formation of mountains.<br>
+                • Made contributions to geography and cartography.<br>
+                • Wrote over 140 books covering a wide range of sciences.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-astronomy'>Astronomy</span> <span class='branch-badge branch-earth'>Geology</span> <span class='branch-badge branch-earth'>Geography</span></p>
+                ">
+                    <div class="avatar">🌍</div>
+                    <h4>Al-Biruni</h4>
+                    <span class="field">Astronomy · Geography · Geology</span>
+                    <p>The Universal Scholar</p>
+                    <span class="flag">🇺🇿</span>
+                </div>
+
+                <!-- Kartini -->
+                <div class="scientist-card" data-modal-title="📚 Raden Ajeng Kartini" data-modal-icon="📚" data-modal-sub="Pioneer of Education &amp; Women's Empowerment" data-modal-body="
+                <p><strong>Raden Ajeng Kartini</strong> (1879–1904) was a Javanese noblewoman and a pioneer in education and women's empowerment in Indonesia.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Founded a school for girls in Jepara, Indonesia.<br>
+                • Wrote letters that became the book <em>Door Duisternis tot Licht</em> (From Darkness to Light).<br>
+                • Advocated for <strong>education for all</strong>, regardless of gender.<br>
+                • Inspired the women's rights movement in Indonesia.<br>
+                • Her birthday (April 21) is celebrated as <strong>Kartini Day</strong> in Indonesia.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-biology'>Education</span> <span class='branch-badge branch-biology'>Social Science</span></p>
+                ">
+                    <div class="avatar">📚</div>
+                    <h4>R.A. Kartini</h4>
+                    <span class="field">Education · Women's Empowerment</span>
+                    <p>Pioneer of Education in Indonesia</p>
+                    <span class="flag">🇮🇩</span>
+                </div>
+
+                <!-- B.J. Habibie -->
+                <div class="scientist-card" data-modal-title="✈️ B.J. Habibie" data-modal-icon="✈️" data-modal-sub="Aerospace Engineer &amp; President" data-modal-body="
+                <p><strong>B.J. Habibie</strong> (1936–2019) was an Indonesian aerospace engineer and the 3rd President of Indonesia.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Developed theories on <strong>crack propagation</strong> in aircraft structures (Habibie Factor).<br>
+                • Played a key role in the development of Indonesia's aviation industry.<br>
+                • Led the development of the <strong>CN-235</strong> and <strong>N-250</strong> aircraft.<br>
+                • Served as Minister of Research and Technology, and later as President.<br>
+                • Inspired a generation of Indonesian engineers and scientists.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-physics'>Aerospace Engineering</span></p>
+                ">
+                    <div class="avatar">✈️</div>
+                    <h4>B.J. Habibie</h4>
+                    <span class="field">Aerospace Engineering</span>
+                    <p>Aerospace Engineer &amp; President</p>
+                    <span class="flag">🇮🇩</span>
+                </div>
+
+                <!-- Euis Sartika -->
+                <div class="scientist-card" data-modal-title="🧪 Prof. Dr. Ing. Euis Sartika" data-modal-icon="🧪" data-modal-sub="Materials Scientist — Nanomaterials" data-modal-body="
+                <p><strong>Prof. Dr. Ing. Euis Sartika</strong> is a contemporary Indonesian materials scientist known for her research on <strong>nanomaterials</strong>.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Research on <strong>nanomaterials</strong> and their applications.<br>
+                • Contributions to the development of advanced materials for various industries.<br>
+                • Professor at the Bandung Institute of Technology (ITB).<br>
+                • Promotes the importance of materials science in addressing global challenges.<br>
+                • Inspires young Indonesian scientists, especially women, to pursue STEM fields.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Materials Science</span></p>
+                ">
+                    <div class="avatar">🧪</div>
+                    <h4>Euis Sartika</h4>
+                    <span class="field">Materials Science</span>
+                    <p>Nanomaterials Researcher</p>
+                    <span class="flag">🇮🇩</span>
+                </div>
+
+                <!-- Bambang Brodjonegoro -->
+                <div class="scientist-card" data-modal-title="📊 Prof. Dr. Ir. Bambang Brodjonegoro" data-modal-icon="📊" data-modal-sub="Expert in Economics &amp; Development Planning" data-modal-body="
+                <p><strong>Prof. Dr. Ir. Bambang Brodjonegoro</strong> is an Indonesian economist and development planning expert.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Professor in economics and development planning.<br>
+                • Served as Indonesia's Minister of National Development Planning (Bappenas).<br>
+                • Contributed to economic policy and regional development strategies.<br>
+                • Published extensively on economic development and public policy.<br>
+                • Promotes evidence-based policy-making for sustainable development.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-earth'>Economics</span></p>
+                ">
+                    <div class="avatar">📊</div>
+                    <h4>Bambang Brodjonegoro</h4>
+                    <span class="field">Economics · Development</span>
+                    <p>Expert in Development Planning</p>
+                    <span class="flag">🇮🇩</span>
+                </div>
+
+                <!-- Tjokorda Raka Sukawati -->
+                <div class="scientist-card" data-modal-title="🌿 Prof. Dr. (H.C.) Tjokorda Raka Sukawati" data-modal-icon="🌿" data-modal-sub="World-Renowned Botanist" data-modal-body="
+                <p><strong>Prof. Dr. (H.C.) Tjokorda Raka Sukawati</strong> is a world-renowned Indonesian botanist who studies tropical plants.</p>
+                <div class='modal-detail'><strong>Major contributions:</strong><br>
+                • Pioneering research on <strong>tropical plants</strong> and their conservation.<br>
+                • Contributed to the discovery and classification of many plant species.<br>
+                • Promoted the importance of <strong>biodiversity</strong> in tropical ecosystems.<br>
+                • Received numerous awards for his contributions to botany.<br>
+                • Inspires the next generation of botanists and conservationists.
+                </div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-biology'>Botany</span></p>
+                ">
+                    <div class="avatar">🌿</div>
+                    <h4>Tjokorda Raka Sukawati</h4>
+                    <span class="field">Botany</span>
+                    <p>World-Renowned Botanist</p>
+                    <span class="flag">🇮🇩</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: QUIZ / EVALUATION                                 -->
+        <!-- ============================================================ -->
+        <section id="quiz" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-puzzle-piece" style="color:var(--secondary);"></i>
+                🧠 Interactive Quiz
+            </div>
+            <div class="section-sub">
+                Test your understanding of natural science, its branches, and famous scientists!
+            </div>
+
+            <div class="quiz-container" id="quizContainer">
+                <div class="quiz-progress" id="quizProgress"></div>
+                <div class="quiz-question" id="quizQuestion">
+                    <span class="q-num">1</span>
+                    <span id="questionText">Loading question...</span>
+                </div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                <div class="quiz-nav">
+                    <button class="secondary" id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                    <span class="quiz-score"><i class="fas fa-star" style="color:var(--secondary);"></i> Score: <span id="scoreDisplay">0</span></span>
+                    <button id="nextBtn">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <i class="fas fa-heart" style="color:var(--accent);"></i>
+            Made with love for Grade 7 Scientists · “Ilmu adalah cahaya yang menerangi kehidupan.”
+            <br style="display:block;margin-top:4px;">
+            <span style="font-size:13px;opacity:0.6;">© 2026 · Essence of Science &amp; Measurement</span>
+        </div>
+
+    </div>
+    <!-- ===== END CONTAINER ===== -->
+
+
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ============================================================ -->
+    <script>
+        // =============================================================
+        // 1. MODAL SYSTEM
+        // =============================================================
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalBox = document.getElementById('modalBox');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSub = document.getElementById('modalSub');
+        const modalBody = document.getElementById('modalBody');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        function openModal(icon, title, sub, bodyHTML) {
+            modalIcon.textContent = icon || '🔬';
+            modalTitle.textContent = title || 'Info';
+            modalSub.textContent = sub || '';
+            modalBody.innerHTML = bodyHTML || '<p>No details available.</p>';
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Attach click events to all clickable cards and scientist cards
+        document.querySelectorAll('.card.clickable, .scientist-card').forEach(el => {
+            el.addEventListener('click', function() {
+                const icon = this.dataset.modalIcon || '🔬';
+                const title = this.dataset.modalTitle || 'Info';
+                const sub = this.dataset.modalSub || '';
+                const body = this.dataset.modalBody || '<p>No details.</p>';
+                openModal(icon, title, sub, body);
+            });
+        });
+
+        // =============================================================
+        // 2. QUIZ SYSTEM
+        // =============================================================
+        const quizData = [{
+            question: 'Which branch of science studies the motion of objects, forces, and energy?',
+            options: ['Biology', 'Chemistry', 'Physics', 'Earth Science'],
+            correct: 2,
+            explanation: '✅ Physics! It deals with motion, forces, energy, light, and sound.'
+        }, {
+            question: 'What does "Biology" study?',
+            options: ['Rocks and minerals', 'Living things', 'Chemical reactions', 'Stars and planets'],
+            correct: 1,
+            explanation: '✅ Biology studies living things — plants, animals, humans, and microbes.'
+        }, {
+            question: 'Who is known as the "Father of Algebra"?',
+            options: ['Al-Razi', 'Ibn Al-Haytham', 'Al-Khwarizmi', 'Al-Biruni'],
+            correct: 2,
+            explanation: '✅ Al-Khwarizmi! He wrote foundational books on algebra and introduced algorithms.'
+        }, {
+            question: 'Which scientist discovered how vision works and made contributions to optics?',
+            options: ['Al-Biruni', 'Ibn Al-Haytham', 'B.J. Habibie', 'Al-Razi'],
+            correct: 1,
+            explanation: '✅ Ibn Al-Haytham! He proved that light enters the eye and is the father of modern optics.'
+        }, {
+            question: 'Which branch of science studies the atmosphere, weather, and climate?',
+            options: ['Meteorology', 'Geology', 'Astronomy', 'Hydrology'],
+            correct: 0,
+            explanation: '✅ Meteorology! It focuses on the atmosphere, weather patterns, and climate.'
+        }, {
+            question: 'What does "Earth Science" include?',
+            options: ['Only rocks', 'Only oceans', 'Land, water, atmosphere, and natural processes',
+                'Only weather'
+            ],
+            correct: 2,
+            explanation: '✅ Earth Science covers the land, water, atmosphere, and all natural processes on Earth.'
+        }, {
+            question: 'Who was the Indonesian aerospace engineer and 3rd President of Indonesia?',
+            options: ['R.A. Kartini', 'B.J. Habibie', 'Tjokorda Raka Sukawati', 'Bambang Brodjonegoro'],
+            correct: 1,
+            explanation: '✅ B.J. Habibie! He was a brilliant aerospace engineer and Indonesia\'s 3rd President.'
+        }, {
+            question: 'What does "Chemistry" study?',
+            options: ['Living things', 'Stars and planets', 'Substances, properties, and reactions',
+                'Earth\'s structure'
+            ],
+            correct: 2,
+            explanation: '✅ Chemistry studies substances, their properties, and how they react and change.'
+        }, {
+            question: 'Which field of science studies plants and how they grow?',
+            options: ['Zoology', 'Botany', 'Microbiology', 'Geology'],
+            correct: 1,
+            explanation: '✅ Botany! It\'s the study of plants, their structure, and how they grow.'
+        }, {
+            question: 'What is the study of the universe as a whole, including galaxies and its origin?',
+            options: ['Planetary Astronomy', 'Stellar Astronomy', 'Cosmology', 'Astrophysics'],
+            correct: 2,
+            explanation: '✅ Cosmology! It studies the universe as a whole — its origin, structure, and evolution.'
+        }];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+        let selectedAnswer = null;
+        let userAnswers = new Array(quizData.length).fill(null);
+
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('quizOptions');
+        const feedbackEl = document.getElementById('quizFeedback');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const progressContainer = document.getElementById('quizProgress');
+
+        function renderProgress() {
+            progressContainer.innerHTML = '';
+            quizData.forEach((_, idx) => {
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                if (idx < currentQuestion) {
+                    if (userAnswers[idx] !== null) {
+                        const isCorrect = userAnswers[idx] === quizData[idx].correct;
+                        dot.classList.add(isCorrect ? 'correct-dot' : 'wrong-dot');
+                    } else {
+                        dot.classList.add('done');
+                    }
+                } else if (idx === currentQuestion) {
+                    dot.classList.add('active');
+                }
+                progressContainer.appendChild(dot);
+            });
+        }
+
+        function renderQuestion() {
+            const data = quizData[currentQuestion];
+            questionText.textContent = data.question;
+            optionsContainer.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+
+            data.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.innerHTML = `<span class="opt-label">${labels[idx]}</span> ${opt}`;
+                btn.dataset.index = idx;
+                btn.addEventListener('click', () => handleAnswer(idx));
+                // If already answered, show state
+                if (userAnswers[currentQuestion] !== null) {
+                    btn.disabled = true;
+                    if (idx === data.correct) btn.classList.add('correct');
+                    if (idx === userAnswers[currentQuestion] && idx !== data.correct) btn.classList.add('wrong');
+                }
+                optionsContainer.appendChild(btn);
+            });
+
+            // Update feedback if already answered
+            if (userAnswers[currentQuestion] !== null) {
+                const isCorrect = userAnswers[currentQuestion] === data.correct;
+                feedbackEl.textContent = isCorrect ? `✅ ${data.explanation}` : `❌ ${data.explanation}`;
+                feedbackEl.className = `quiz-feedback show ${isCorrect ? 'success' : 'error'}`;
+                answered = true;
+            } else {
+                feedbackEl.className = 'quiz-feedback';
+                feedbackEl.textContent = '';
+                answered = false;
+            }
+
+            // Update buttons
+            prevBtn.disabled = currentQuestion === 0;
+            const isLast = currentQuestion === quizData.length - 1;
+            nextBtn.innerHTML = isLast ? 'Finish <i class="fas fa-flag-checkered"></i>' : 'Next <i class="fas fa-arrow-right"></i>';
+
+            renderProgress();
+            updateScore();
+        }
+
+        function handleAnswer(idx) {
+            if (answered) return;
+            const data = quizData[currentQuestion];
+            const isCorrect = idx === data.correct;
+            userAnswers[currentQuestion] = idx;
+            if (isCorrect) score++;
+
+            // Disable all buttons and show correct/wrong
+            const btns = optionsContainer.querySelectorAll('button');
+            btns.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === data.correct) btn.classList.add('correct');
+                if (i === idx && !isCorrect) btn.classList.add('wrong');
+            });
+
+            feedbackEl.textContent = isCorrect ? `✅ ${data.explanation}` : `❌ ${data.explanation}`;
+            feedbackEl.className = `quiz-feedback show ${isCorrect ? 'success' : 'error'}`;
+            answered = true;
+            updateScore();
+            renderProgress();
+        }
+
+        function updateScore() {
+            // Recalculate score from userAnswers
+            let correctCount = 0;
+            quizData.forEach((data, idx) => {
+                if (userAnswers[idx] !== null && userAnswers[idx] === data.correct) correctCount++;
+            });
+            score = correctCount;
+            scoreDisplay.textContent = `${score} / ${quizData.length}`;
+        }
+
+        function goToQuestion(idx) {
+            if (idx < 0 || idx >= quizData.length) return;
+            currentQuestion = idx;
+            renderQuestion();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) goToQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const isLast = currentQuestion === quizData.length - 1;
+            if (isLast) {
+                // Show final result
+                const total = quizData.length;
+                const correct = score;
+                const pct = Math.round((correct / total) * 100);
+                let msg = '';
+                if (pct === 100) msg = '🌟 Perfect! You\'re a Science Star!';
+                else if (pct >= 80) msg = '🎉 Excellent! You really know your science!';
+                else if (pct >= 60) msg = '👍 Good job! Keep learning and you\'ll master it!';
+                else msg = '📚 Keep studying! Science is all about curiosity and practice.';
+
+                openModal(
+                    '🏆',
+                    'Quiz Complete!',
+                    `You scored ${correct} out of ${total} (${pct}%)`,
+                    `<p style="font-size:20px;font-weight:800;text-align:center;">${msg}</p>
+                     <div style="background:#F0F4FF;border-radius:16px;padding:16px;margin-top:12px;text-align:center;">
+                       <span style="font-size:48px;">${pct >= 80 ? '🌟' : '📖'}</span>
+                       <p style="font-weight:600;color:var(--text-light);">${pct >= 80 ? 'Amazing work! You have a bright future in science!' : 'Every scientist started where you are now. Keep going!'}</p>
+                     </div>
+                     <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+                       ${quizData.map((d, i) => {
+                         const ans = userAnswers[i];
+                         if (ans === null) return '<span style="background:#E2E8F0;padding:4px 12px;border-radius:40px;font-size:13px;">?</span>';
+                         return `<span style="background:${ans === d.correct ? '#D1FAE5' : '#FEE2E2'};padding:4px 12px;border-radius:40px;font-size:13px;font-weight:700;">${i+1} ${ans === d.correct ? '✅' : '❌'}</span>`;
+                       }).join('')}
+                     </div>
+                     <button onclick="closeModal();resetQuiz();" style="margin-top:20px;background:var(--primary);color:#fff;border:none;padding:12px 32px;border-radius:60px;font-weight:800;font-family:'Nunito',sans-serif;font-size:16px;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(108,60,225,0.25);">🔄 Try Again</button>
+                    `
+                );
+                return;
+            }
+            if (currentQuestion < quizData.length - 1) {
+                goToQuestion(currentQuestion + 1);
+            }
+        });
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            selectedAnswer = null;
+            userAnswers = new Array(quizData.length).fill(null);
+            renderQuestion();
+            updateScore();
+            // Close modal if open
+            closeModal();
+            // Scroll to quiz
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Expose reset for modal button
+        window.resetQuiz = resetQuiz;
+
+        // =============================================================
+        // 3. SMOOTH SCROLL FOR NAV
+        // =============================================================
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Update active state
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // =============================================================
+        // 4. INIT
+        // =============================================================
+        renderQuestion();
+        updateScore();
+
+        // Auto-open first card with a tiny delay to show interactivity hint
+        // (just a subtle nudge)
+        console.log('🔬 Science website loaded! Click any card to learn more.');
+    </script>
+
+</body>
+</html>
