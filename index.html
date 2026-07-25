@@ -1380,63 +1380,122 @@
         });
 
         // =============================================================
-        // 2. QUIZ SYSTEM
+        // 2. QUIZ SYSTEM — 20 pertanyaan
         // =============================================================
-        const quizData = [{
-            question: 'Which branch of science studies the motion of objects, forces, and energy?',
-            options: ['Biology', 'Chemistry', 'Physics', 'Earth Science'],
-            correct: 2,
-            explanation: '✅ Physics! It deals with motion, forces, energy, light, and sound.'
-        }, {
-            question: 'What does "Biology" study?',
-            options: ['Rocks and minerals', 'Living things', 'Chemical reactions', 'Stars and planets'],
-            correct: 1,
-            explanation: '✅ Biology studies living things — plants, animals, humans, and microbes.'
-        }, {
-            question: 'Who is known as the "Father of Algebra"?',
-            options: ['Al-Razi', 'Ibn Al-Haytham', 'Al-Khwarizmi', 'Al-Biruni'],
-            correct: 2,
-            explanation: '✅ Al-Khwarizmi! He wrote foundational books on algebra and introduced algorithms.'
-        }, {
-            question: 'Which scientist discovered how vision works and made contributions to optics?',
-            options: ['Al-Biruni', 'Ibn Al-Haytham', 'B.J. Habibie', 'Al-Razi'],
-            correct: 1,
-            explanation: '✅ Ibn Al-Haytham! He proved that light enters the eye and is the father of modern optics.'
-        }, {
-            question: 'Which branch of science studies the atmosphere, weather, and climate?',
-            options: ['Meteorology', 'Geology', 'Astronomy', 'Hydrology'],
-            correct: 0,
-            explanation: '✅ Meteorology! It focuses on the atmosphere, weather patterns, and climate.'
-        }, {
-            question: 'What does "Earth Science" include?',
-            options: ['Only rocks', 'Only oceans', 'Land, water, atmosphere, and natural processes',
-                'Only weather'
-            ],
-            correct: 2,
-            explanation: '✅ Earth Science covers the land, water, atmosphere, and all natural processes on Earth.'
-        }, {
-            question: 'Who was the Indonesian aerospace engineer and 3rd President of Indonesia?',
-            options: ['R.A. Kartini', 'B.J. Habibie', 'Tjokorda Raka Sukawati', 'Bambang Brodjonegoro'],
-            correct: 1,
-            explanation: '✅ B.J. Habibie! He was a brilliant aerospace engineer and Indonesia\'s 3rd President.'
-        }, {
-            question: 'What does "Chemistry" study?',
-            options: ['Living things', 'Stars and planets', 'Substances, properties, and reactions',
-                'Earth\'s structure'
-            ],
-            correct: 2,
-            explanation: '✅ Chemistry studies substances, their properties, and how they react and change.'
-        }, {
-            question: 'Which field of science studies plants and how they grow?',
-            options: ['Zoology', 'Botany', 'Microbiology', 'Geology'],
-            correct: 1,
-            explanation: '✅ Botany! It\'s the study of plants, their structure, and how they grow.'
-        }, {
-            question: 'What is the study of the universe as a whole, including galaxies and its origin?',
-            options: ['Planetary Astronomy', 'Stellar Astronomy', 'Cosmology', 'Astrophysics'],
-            correct: 2,
-            explanation: '✅ Cosmology! It studies the universe as a whole — its origin, structure, and evolution.'
-        }];
+        const quizData = [
+            // 10 pertanyaan awal (tetap)
+            {
+                question: 'Which branch of science studies the motion of objects, forces, and energy?',
+                options: ['Biology', 'Chemistry', 'Physics', 'Earth Science'],
+                correct: 2,
+                explanation: '✅ Physics! It deals with motion, forces, energy, light, and sound.'
+            }, {
+                question: 'What does "Biology" study?',
+                options: ['Rocks and minerals', 'Living things', 'Chemical reactions', 'Stars and planets'],
+                correct: 1,
+                explanation: '✅ Biology studies living things — plants, animals, humans, and microbes.'
+            }, {
+                question: 'Who is known as the "Father of Algebra"?',
+                options: ['Al-Razi', 'Ibn Al-Haytham', 'Al-Khwarizmi', 'Al-Biruni'],
+                correct: 2,
+                explanation: '✅ Al-Khwarizmi! He wrote foundational books on algebra and introduced algorithms.'
+            }, {
+                question: 'Which scientist discovered how vision works and made contributions to optics?',
+                options: ['Al-Biruni', 'Ibn Al-Haytham', 'B.J. Habibie', 'Al-Razi'],
+                correct: 1,
+                explanation: '✅ Ibn Al-Haytham! He proved that light enters the eye and is the father of modern optics.'
+            }, {
+                question: 'Which branch of science studies the atmosphere, weather, and climate?',
+                options: ['Meteorology', 'Geology', 'Astronomy', 'Hydrology'],
+                correct: 0,
+                explanation: '✅ Meteorology! It focuses on the atmosphere, weather patterns, and climate.'
+            }, {
+                question: 'What does "Earth Science" include?',
+                options: ['Only rocks', 'Only oceans', 'Land, water, atmosphere, and natural processes', 'Only weather'],
+                correct: 2,
+                explanation: '✅ Earth Science covers the land, water, atmosphere, and all natural processes on Earth.'
+            }, {
+                question: 'Who was the Indonesian aerospace engineer and 3rd President of Indonesia?',
+                options: ['R.A. Kartini', 'B.J. Habibie', 'Tjokorda Raka Sukawati', 'Bambang Brodjonegoro'],
+                correct: 1,
+                explanation: '✅ B.J. Habibie! He was a brilliant aerospace engineer and Indonesia\'s 3rd President.'
+            }, {
+                question: 'What does "Chemistry" study?',
+                options: ['Living things', 'Stars and planets', 'Substances, properties, and reactions', 'Earth\'s structure'],
+                correct: 2,
+                explanation: '✅ Chemistry studies substances, their properties, and how they react and change.'
+            }, {
+                question: 'Which field of science studies plants and how they grow?',
+                options: ['Zoology', 'Botany', 'Microbiology', 'Geology'],
+                correct: 1,
+                explanation: '✅ Botany! It\'s the study of plants, their structure, and how they grow.'
+            }, {
+                question: 'What is the study of the universe as a whole, including galaxies and its origin?',
+                options: ['Planetary Astronomy', 'Stellar Astronomy', 'Cosmology', 'Astrophysics'],
+                correct: 2,
+                explanation: '✅ Cosmology! It studies the universe as a whole — its origin, structure, and evolution.'
+            },
+            // 10 pertanyaan tambahan (baru)
+            {
+                question: 'Which sub‑branch of Earth Science studies rocks and minerals?',
+                options: ['Meteorology', 'Geology', 'Hydrology', 'Oceanography'],
+                correct: 1,
+                explanation: '✅ Geology! It focuses on rocks, minerals, and the structure of the Earth.'
+            }, {
+                question: 'What does "Organic Chemistry" study?',
+                options: ['Metals and minerals', 'Carbon compounds in living things', 'Water and its properties',
+                    'Nuclear reactions'
+                ],
+                correct: 1,
+                explanation: '✅ Organic chemistry studies carbon-based compounds, especially those found in living organisms.'
+            }, {
+                question: 'Which scientist was a great physician and also discovered sulfuric acid?',
+                options: ['Al-Razi', 'Ibn Sina', 'Al-Khwarizmi', 'Ibn Al-Haytham'],
+                correct: 0,
+                explanation: '✅ Al-Razi! He was a renowned physician and chemist who discovered sulfuric acid and ethanol.'
+            }, {
+                question: 'What does "Mechanics" study?',
+                options: ['Light and optics', 'Motion, forces, and energy', 'Electricity and magnetism',
+                    'Chemical reactions'
+                ],
+                correct: 1,
+                explanation: '✅ Mechanics is the branch of physics that studies motion, forces, and energy.'
+            }, {
+                question: 'Which Indonesian scientist is known for research on nanomaterials?',
+                options: ['B.J. Habibie', 'Euis Sartika', 'Bambang Brodjonegoro', 'Tjokorda Raka Sukawati'],
+                correct: 1,
+                explanation: '✅ Prof. Dr. Ing. Euis Sartika is a materials scientist specializing in nanomaterials.'
+            }, {
+                question: 'What does "Hydrology" study?',
+                options: ['Rocks and minerals', 'Weather and climate', 'Water on Earth (rivers, lakes, oceans)',
+                    'The atmosphere'
+                ],
+                correct: 2,
+                explanation: '✅ Hydrology is the study of water on Earth, including its distribution and movement.'
+            }, {
+                question: 'Who was the famous traveler who recorded his journeys across the Islamic world?',
+                options: ['Al-Biruni', 'Ibn Battuta', 'Al-Idrisi', 'Marco Polo'],
+                correct: 1,
+                explanation: '✅ Ibn Battuta! He traveled extensively and wrote the "Rihla", a valuable geographical account.'
+            }, {
+                question: 'Which branch of science studies light, reflection, and refraction?',
+                options: ['Mechanics', 'Optics', 'Electricity', 'Acoustics'],
+                correct: 1,
+                explanation: '✅ Optics is the branch of physics that studies light and its properties.'
+            }, {
+                question: 'What does "Stellar Astronomy" focus on?',
+                options: ['Planets and moons', 'Stars and their life cycles', 'Galaxies and the universe',
+                    'Black holes only'
+                ],
+                correct: 1,
+                explanation: '✅ Stellar astronomy studies stars, their formation, evolution, and death.'
+            }, {
+                question: 'Which Indonesian scientist is an expert in economics and development planning?',
+                options: ['B.J. Habibie', 'Bambang Brodjonegoro', 'R.A. Kartini', 'Tjokorda Raka Sukawati'],
+                correct: 1,
+                explanation: '✅ Prof. Dr. Ir. Bambang Brodjonegoro is an economist and development planning expert.'
+            }
+        ];
 
         let currentQuestion = 0;
         let score = 0;
@@ -1633,9 +1692,7 @@
         renderQuestion();
         updateScore();
 
-        // Auto-open first card with a tiny delay to show interactivity hint
-        // (just a subtle nudge)
-        console.log('🔬 Science website loaded! Click any card to learn more.');
+        console.log('🔬 Science website loaded! Click any card to learn more. Total quiz questions: ' + quizData.length);
     </script>
 
 </body>
