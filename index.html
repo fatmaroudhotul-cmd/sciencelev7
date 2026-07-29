@@ -322,7 +322,6 @@
             font-weight: 700;
             color: var(--primary);
         }
-        /* clickable card */
         .card.clickable {
             cursor: pointer;
         }
@@ -435,11 +434,6 @@
             align-items: center;
             gap: 10px;
         }
-        .sub-branch-group .branch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-        }
         .sub-branch-item {
             background: #F8FAFC;
             border-radius: 16px;
@@ -449,7 +443,7 @@
         }
         .sub-branch-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
         }
         .sub-branch-item strong {
             display: block;
@@ -460,6 +454,157 @@
             font-size: 13px;
             color: var(--text-light);
             font-weight: 500;
+        }
+
+        /* ===== LAB TOOLS & SAFETY SYMBOLS ===== */
+        .tool-card,
+        .symbol-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(108, 60, 225, 0.06);
+            text-align: center;
+            cursor: pointer;
+        }
+        .tool-card:hover,
+        .symbol-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 72px rgba(108, 60, 225, 0.18);
+        }
+        .tool-card img,
+        .symbol-card img {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+        .tool-card h4,
+        .symbol-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .tool-card p,
+        .symbol-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ===== VOCABULARY DRAG & REVEAL (INDONESIAN) ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .vocab-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--primary);
+            position: relative;
+            user-select: none;
+        }
+        .vocab-item:hover {
+            border-color: var(--primary-light);
+            transform: scale(1.03);
+        }
+        .vocab-item .vocab-def {
+            display: none;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 8px;
+            background: #F8FAFC;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border-top: 2px solid var(--primary-light);
+        }
+        .vocab-item.active .vocab-def {
+            display: block;
+        }
+        .vocab-item .vocab-word {
+            display: block;
+        }
+        .vocab-item .drag-hint {
+            font-size: 12px;
+            color: var(--text-light);
+            opacity: 0.6;
+            display: block;
+            margin-top: 4px;
+        }
+        /* drag-over effect */
+        .vocab-item.drag-over {
+            border-color: var(--secondary);
+            background: #FEF3C7;
+            transform: scale(1.05);
+        }
+
+        /* ===== DRAG & DROP MATCHING ===== */
+        .match-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .match-col {
+            flex: 1 1 200px;
+            min-width: 180px;
+        }
+        .match-col h5 {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: var(--primary);
+        }
+        .match-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 2px solid #E2E8F0;
+            cursor: grab;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .match-item:active {
+            cursor: grabbing;
+            opacity: 0.6;
+        }
+        .match-item.droppable {
+            border-color: var(--primary-light);
+            background: #EDE9FE;
+        }
+        .match-item.matched {
+            border-color: #10B981;
+            background: #D1FAE5;
+            cursor: default;
+            opacity: 0.8;
+        }
+        .match-item.wrong {
+            border-color: #EF4444;
+            background: #FEE2E2;
+        }
+        .match-feedback {
+            margin-top: 16px;
+            text-align: center;
+            font-weight: 700;
         }
 
         /* ===== POPUP MODAL ===== */
@@ -782,6 +927,14 @@
             .section-title {
                 font-size: 26px;
             }
+            .match-area {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tool-card img,
+            .symbol-card img {
+                max-width: 80px;
+            }
         }
         @media (max-width: 480px) {
             .sub-branch-group .branch-grid {
@@ -860,6 +1013,7 @@
                 <a href="#definition" class="active">Definition</a>
                 <a href="#branches">Branches</a>
                 <a href="#scientists">Scientists</a>
+                <a href="#laboratory">Lab & Safety</a>
                 <a href="#quiz">Quiz</a>
             </div>
         </div>
@@ -1292,7 +1446,294 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SECTION 4: QUIZ / EVALUATION                                 -->
+        <!-- SECTION 4: LABORATORY TOOLS, SAFETY RULES & SYMBOLS          -->
+        <!-- ============================================================ -->
+        <section id="laboratory" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-flask" style="color:var(--secondary);"></i>
+                Laboratory Tools, Safety Rules &amp; Symbols
+            </div>
+            <div class="section-sub">
+                Learn about the tools scientists use, how to stay safe, and what the warning signs mean.
+            </div>
+
+            <!-- ===== LAB TOOLS WITH IMAGES ===== -->
+            <h3 style="font-size:24px; font-weight:800; margin-bottom:16px;"><i class="fas fa-tools" style="color:var(--primary);"></i> Laboratory Tools &amp; Their Functions</h3>
+            <div class="grid-3">
+                <div class="tool-card clickable" data-modal-title="🧪 Erlenmeyer Flask" data-modal-icon="🧪" data-modal-sub="For mixing and heating liquids" data-modal-body="
+                <p><strong>Erlenmeyer Flask</strong> — a conical flask with a flat bottom and a narrow neck. Used for mixing, heating, and storing liquids.</p>
+                <div class='modal-detail'><strong>Fun fact:</strong> The conical shape makes it easy to swirl liquids without spilling.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span></p>
+                ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTImaxpKBp6p7pGtH-sd0FEIYPMfKQKo4iAMFKggzsBMw&s=10" alt="Erlenmeyer Flask">
+                    <h4>Erlenmeyer Flask</h4>
+                    <p>For mixing and heating liquids.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🥽 Safety Goggles" data-modal-icon="🥽" data-modal-sub="Protect eyes from chemicals" data-modal-body="
+                <p><strong>Safety Goggles</strong> — protective eyewear that shields the eyes from chemical splashes, flying particles, and harmful light.</p>
+                <div class='modal-detail'><strong>Always wear goggles</strong> when working with chemicals, glassware, or heat.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Safety</span> <span class='branch-badge branch-biology'>Safety</span></p>
+                ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Gvhp1hWpo87vx1cN_z07atrEZBqc5GzQXCe5SJuNFA&s=10" alt="Safety Goggles">
+                    <h4>Safety Goggles</h4>
+                    <p>Protect eyes from chemicals and splashes.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🔬 Microscope" data-modal-icon="🔬" data-modal-sub="Magnifies tiny objects" data-modal-body="
+                <p><strong>Microscope</strong> — an instrument that uses lenses to magnify objects too small for the naked eye.</p>
+                <div class='modal-detail'><strong>Uses:</strong> Viewing cells, bacteria, and microorganisms. Essential in biology.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-biology'>Biology</span></p>
+                ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRDR_h0QA_uhg7SnFUe2pdijIeGIsRVtMxfFUZ7xvxoA&s=10" alt="Microscope">
+                    <h4>Microscope</h4>
+                    <p>Magnifies tiny objects like cells.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="💧 Pipette / Dropper" data-modal-icon="💧" data-modal-sub="Transfers small liquid volumes" data-modal-body="
+                <p><strong>Pipette / Dropper</strong> — a narrow tube used to transfer small, measured amounts of liquid.</p>
+                <div class='modal-detail'><strong>Tip:</strong> Used in chemistry and biology for precise liquid measurements.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span> <span class='branch-badge branch-biology'>Biology</span></p>
+                ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUMWnWxMxa8YRfTR6IjWruBCbGwdBRtCxJse3ymUC4mA&s=10" alt="Pipette">
+                    <h4>Pipette / Dropper</h4>
+                    <p>Transfers small liquid volumes.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🥛 Beaker Glass" data-modal-icon="🥛" data-modal-sub="For mixing and heating liquids" data-modal-body="
+                <p><strong>Beaker Glass</strong> — a cylindrical container with a flat bottom and a small spout. Used for mixing, heating, and pouring liquids.</p>
+                <div class='modal-detail'><strong>Note:</strong> Not as accurate for measuring volume as a graduated cylinder.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span></p>
+                ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI6eVA5qmLpz2ZS2F1fQP_he_KlbWbItNr3Kyx5gSmWQ&s=10" alt="Beaker Glass">
+                    <h4>Beaker Glass</h4>
+                    <p>For mixing and heating liquids.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🌡️ Thermometer" data-modal-icon="🌡️" data-modal-sub="Measures temperature" data-modal-body="
+                <p><strong>Thermometer</strong> — an instrument used to measure temperature (how hot or cold something is).</p>
+                <div class='modal-detail'><strong>Units:</strong> Celsius (°C) or Fahrenheit (°F). Common in physics, chemistry, and biology.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-physics'>Physics</span> <span class='branch-badge branch-earth'>Earth Science</span></p>
+                ">
+                    <img src="https://citystarholdings.co.za/product/laboratory-thermometer-non-mercury-10-to110c/?srsltid=AfmBOoqpnoOFb6W8ybdsfuNrXKmf9ev2a6OPOIX7yLC4RKEhoTzWYNtP" alt="Thermometer">
+                    <h4>Thermometer</h4>
+                    <p>Measures temperature.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🧪 Test Tube" data-modal-icon="🧪" data-modal-sub="Holds small amounts of liquid" data-modal-body="
+                <p><strong>Test Tube</strong> — a small cylindrical glass tube used to hold, mix, or heat small amounts of liquids or solids.</p>
+                <div class='modal-detail'><strong>Fun fact:</strong> Test tubes are used in almost every chemistry lab.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span></p>
+                ">
+                    <img src="https://www.pinterest.com/pin/chemistry-apparatus-test-tube-set-stock-illustration--620370917458173564/" alt="Test Tube">
+                    <h4>Test Tube</h4>
+                    <p>Holds and mixes small amounts of liquid.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="📏 Measuring Cylinder" data-modal-icon="📏" data-modal-sub="Measures liquid volume accurately" data-modal-body="
+                <p><strong>Measuring Cylinder</strong> — a tall, narrow glass tube with markings (graduations) used to measure the volume of liquids accurately.</p>
+                <div class='modal-detail'><strong>Tip:</strong> Read at eye level at the bottom of the meniscus (curved surface).</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span></p>
+                ">
+                    <img src="https://philmedicalsupplies.com/product/graduated-cylinder-glass/?srsltid=AfmBOoq7EF5MSU_cgISP9eLNgudNXWa46MvWSYdYwG0nnha2uXYBdTmL" alt="Measuring Cylinder">
+                    <h4>Measuring Cylinder</h4>
+                    <p>Measures liquid volume accurately.</p>
+                </div>
+
+                <div class="tool-card clickable" data-modal-title="🔥 Bunsen Burner" data-modal-icon="🔥" data-modal-sub="Heats substances with flame" data-modal-body="
+                <p><strong>Bunsen Burner</strong> — a common laboratory tool that produces a single open gas flame. Used for heating, sterilising, and combustion.</p>
+                <div class='modal-detail'><strong>Safety:</strong> Always tie back long hair and use a flame spreader when needed.</div>
+                <p style='margin-top:12px;'><span class='branch-badge branch-chemistry'>Chemistry</span> <span class='branch-badge branch-physics'>Physics</span></p>
+                ">
+                    <img src="https://www.dreamstime.com/bunsen-chemistry-science-lab-bunsen-chemistry-science-lab-illustration-burner-flame-temperature-heat-tool-oratories-bunsen-image327655009" alt="Bunsen Burner">
+                    <h4>Bunsen Burner</h4>
+                    <p>Heats substances with flame.</p>
+                </div>
+            </div>
+
+            <!-- ===== SAFETY RULES ===== -->
+            <h3 style="font-size:24px; font-weight:800; margin-top:40px; margin-bottom:16px;"><i class="fas fa-shield-alt" style="color:var(--accent);"></i> Laboratory Safety Rules</h3>
+            <div class="grid-3" style="background:rgba(255,255,255,0.6); border-radius:var(--radius); padding:20px;">
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-eye" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>1. Wear safety goggles</strong><br><span style="font-size:14px; color:var(--text-light);">Protect your eyes from chemicals and splashes.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-hand" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>2. Wear gloves</strong><br><span style="font-size:14px; color:var(--text-light);">Protect your hands from harmful substances.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-tshirt" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>3. Wear a lab coat</strong><br><span style="font-size:14px; color:var(--text-light);">Protect your clothes and skin from spills.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-wind" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>4. Work in a ventilated area</strong><br><span style="font-size:14px; color:var(--text-light);">Avoid inhaling harmful fumes.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-fire-extinguisher" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>5. Know the emergency equipment</strong><br><span style="font-size:14px; color:var(--text-light);">Locate fire extinguisher, safety shower, and first aid kit.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-broom" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>6. Clean up spills immediately</strong><br><span style="font-size:14px; color:var(--text-light);">Prevent accidents and keep the lab tidy.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-hand-sparkles" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>7. Wash hands after experiments</strong><br><span style="font-size:14px; color:var(--text-light);">Remove any chemical residue.</span></div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; background:var(--card-bg); padding:16px; border-radius:16px; box-shadow:var(--shadow);">
+                    <i class="fas fa-ban" style="color:var(--primary); font-size:28px;"></i>
+                    <div><strong>8. No eating or drinking in the lab</strong><br><span style="font-size:14px; color:var(--text-light);">Chemicals can contaminate food.</span></div>
+                </div>
+            </div>
+
+            <!-- ===== SAFETY SYMBOLS ===== -->
+            <h3 style="font-size:24px; font-weight:800; margin-top:40px; margin-bottom:16px;"><i class="fas fa-exclamation-triangle" style="color:var(--secondary);"></i> Laboratory Safety Symbols</h3>
+            <div class="grid-4">
+                <div class="symbol-card clickable" data-modal-title="⚠️ Biological Hazard" data-modal-icon="🦠" data-modal-sub="Risk of infection" data-modal-body="
+                <p><strong>Biological Hazard</strong> — indicates the presence of biological agents (bacteria, viruses, fungi) that can cause disease.</p>
+                <div class='modal-detail'><strong>What to do:</strong> Wear protective gear, handle with care, and dispose of waste properly.</div>
+                ">
+                    <img src="https://i.ibb.co.com/Xrs5hFZp/Biological-Hazard.webp" alt="Biological Hazard">
+                    <h4>Biological Hazard</h4>
+                    <p>Risk of infection from biological agents.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="⚠️ Corrosive" data-modal-icon="🧪" data-modal-sub="Can destroy materials and skin" data-modal-body="
+                <p><strong>Corrosive</strong> — substances that can destroy or damage living tissue, metals, or other materials.</p>
+                <div class='modal-detail'><strong>Examples:</strong> Strong acids (sulfuric acid) and bases (sodium hydroxide).</div>
+                ">
+                    <img src="https://i.ibb.co.com/zWTp2Brd/Corrosive.webp" alt="Corrosive">
+                    <h4>Corrosive</h4>
+                    <p>Can destroy materials and burn skin.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="💥 Explosive Material" data-modal-icon="💥" data-modal-sub="Risk of explosion" data-modal-body="
+                <p><strong>Explosive Material</strong> — substances that can explode under certain conditions (heat, shock, friction).</p>
+                <div class='modal-detail'><strong>Safety:</strong> Store away from heat and avoid rough handling.</div>
+                ">
+                    <img src="https://i.ibb.co.com/sdwLGd3Y/Explosive-Material.webp" alt="Explosive Material">
+                    <h4>Explosive Material</h4>
+                    <p>Substances that may explode.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="🔥 Flammable Material" data-modal-icon="🔥" data-modal-sub="Catches fire easily" data-modal-body="
+                <p><strong>Flammable Material</strong> — substances that can easily ignite and burn.</p>
+                <div class='modal-detail'><strong>Examples:</strong> Alcohol, gasoline, and many organic solvents.</div>
+                ">
+                    <img src="https://i.ibb.co.com/prvb4HRL/Flammable-Material.webp" alt="Flammable Material">
+                    <h4>Flammable</h4>
+                    <p>Catches fire easily.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="⚠️ General Warning" data-modal-icon="⚠️" data-modal-sub="Caution – general hazard" data-modal-body="
+                <p><strong>General Warning</strong> — indicates a potential hazard that requires caution. It often appears with additional text.</p>
+                <div class='modal-detail'><strong>Take note:</strong> Read the label carefully to understand the specific risk.</div>
+                ">
+                    <img src="https://i.ibb.co.com/dsDb86r7/General-Warning.webp" alt="General Warning">
+                    <h4>General Warning</h4>
+                    <p>Caution – general hazard.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="🧤 Gloves Required" data-modal-icon="🧤" data-modal-sub="Wear protective gloves" data-modal-body="
+                <p><strong>Gloves Required</strong> — mandatory to wear gloves to protect your hands from chemicals, heat, or biological hazards.</p>
+                <div class='modal-detail'><strong>Tip:</strong> Choose the right type of glove for the task (e.g., latex, nitrile, or heat‑resistant).</div>
+                ">
+                    <img src="https://i.ibb.co.com/JRKWZj8m/Gloves-Required.webp" alt="Gloves Required">
+                    <h4>Gloves Required</h4>
+                    <p>Wear protective gloves.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="⚡ Electrical Hazard" data-modal-icon="⚡" data-modal-sub="Risk of electric shock" data-modal-body="
+                <p><strong>Electrical Hazard</strong> — indicates the presence of high voltage or electrical equipment that can cause shock.</p>
+                <div class='modal-detail'><strong>Safety:</strong> Keep dry, avoid touching exposed wires, and turn off power before servicing.</div>
+                ">
+                    <img src="https://i.ibb.co.com/C5H4qTvX/High-Voltage-ELECTRICAL-HAZARD.webp" alt="Electrical Hazard">
+                    <h4>Electrical Hazard</h4>
+                    <p>Risk of electric shock.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="🚫 No Open Flame" data-modal-icon="🚫" data-modal-sub="No open flames allowed" data-modal-body="
+                <p><strong>No Open Flame</strong> — prohibits the use of flames (Bunsen burners, candles, etc.) in the area.</p>
+                <div class='modal-detail'><strong>Reason:</strong> To avoid igniting flammable materials or gases.</div>
+                ">
+                    <img src="https://i.ibb.co.com/qMWnyYSd/No-Open-Flame.webp" alt="No Open Flame">
+                    <h4>No Open Flame</h4>
+                    <p>Open flames are prohibited.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="☠️ Toxic / Poison" data-modal-icon="☠️" data-modal-sub="Poisonous substance" data-modal-body="
+                <p><strong>Toxic / Poison</strong> — substances that can cause illness or death if inhaled, ingested, or absorbed through the skin.</p>
+                <div class='modal-detail'><strong>Examples:</strong> Cyanide, mercury compounds, and many pesticides.</div>
+                ">
+                    <img src="https://i.ibb.co.com/RkSTLkRB/Poison.webp" alt="Toxic/Poison">
+                    <h4>Toxic / Poison</h4>
+                    <p>Poisonous substance – handle with extreme care.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="🥽 Safety Glasses Required" data-modal-icon="🥽" data-modal-sub="Wear safety goggles" data-modal-body="
+                <p><strong>Safety Glasses Required</strong> — mandatory to wear eye protection to prevent injury from splashes, flying particles, or radiation.</p>
+                <div class='modal-detail'><strong>Remember:</strong> Always wear goggles when working with chemicals or glassware.</div>
+                ">
+                    <img src="https://i.ibb.co.com/60r8yzsB/Safety-Glasses-Required.webp" alt="Safety Glasses Required">
+                    <h4>Safety Glasses</h4>
+                    <p>Wear protective eyewear.</p>
+                </div>
+
+                <div class="symbol-card clickable" data-modal-title="☢️ Radiation Hazard" data-modal-icon="☢️" data-modal-sub="Risk of radiation exposure" data-modal-body="
+                <p><strong>Radiation Hazard</strong> — indicates the presence of ionizing radiation (X‑rays, radioactive materials).</p>
+                <div class='modal-detail'><strong>Safety:</strong> Minimize exposure time, keep distance, and use shielding.</div>
+                ">
+                    <img src="https://i.ibb.co.com/YTPJ8T0n/Radiation-Hazard.webp" alt="Radiation Hazard">
+                    <h4>Radiation Hazard</h4>
+                    <p>Risk of radiation exposure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: SCIENCE VOCABULARY (drag to reveal Indonesian)    -->
+        <!-- ============================================================ -->
+        <section id="vocabulary" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-book-open" style="color:var(--accent);"></i>
+                Science Vocabulary – Drag to Reveal (🇮🇩 Indonesian)
+            </div>
+            <div class="section-sub">
+                👆 <strong>Drag</strong> any word below to reveal its <strong>Indonesian meaning</strong>. Learn science terms in two languages!
+            </div>
+            <div class="vocab-grid" id="vocabGrid">
+                <!-- akan diisi oleh JS -->
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6: DRAG & DROP MATCHING (Lab Tools)                 -->
+        <!-- ============================================================ -->
+        <section id="matching" class="mt-12">
+            <div class="section-title">
+                <i class="fas fa-arrows-alt-h" style="color:var(--secondary);"></i>
+                Match the Tool with its Function
+            </div>
+            <div class="section-sub">
+                Drag the tool name to the correct function. How many can you match?
+            </div>
+            <div class="match-area" id="matchArea">
+                <div class="match-col" id="toolsCol">
+                    <h5>🔧 Tools</h5>
+                    <!-- items akan diisi oleh JS -->
+                </div>
+                <div class="match-col" id="functionsCol">
+                    <h5>📋 Functions</h5>
+                    <!-- items akan diisi oleh JS -->
+                </div>
+            </div>
+            <div class="match-feedback" id="matchFeedback">Drag a tool name to its matching function.</div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7: QUIZ / EVALUATION                                -->
         <!-- ============================================================ -->
         <section id="quiz" class="mt-12">
             <div class="section-title">
@@ -1368,139 +1809,314 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Attach click events to all clickable cards and scientist cards
-        document.querySelectorAll('.card.clickable, .scientist-card').forEach(el => {
-            el.addEventListener('click', function() {
-                const icon = this.dataset.modalIcon || '🔬';
-                const title = this.dataset.modalTitle || 'Info';
-                const sub = this.dataset.modalSub || '';
-                const body = this.dataset.modalBody || '<p>No details.</p>';
-                openModal(icon, title, sub, body);
+        // Attach click events to all clickable cards
+        document.querySelectorAll('.card.clickable, .tool-card.clickable, .symbol-card.clickable, .scientist-card')
+            .forEach(el => {
+                el.addEventListener('click', function() {
+                    const icon = this.dataset.modalIcon || '🔬';
+                    const title = this.dataset.modalTitle || 'Info';
+                    const sub = this.dataset.modalSub || '';
+                    const body = this.dataset.modalBody || '<p>No details.</p>';
+                    openModal(icon, title, sub, body);
+                });
             });
+
+        // =============================================================
+        // 2. VOCABULARY (DRAG TO REVEAL INDONESIAN)
+        // =============================================================
+        const vocabData = [
+            { word: 'Hypothesis', id: 'Hipotesis', def: 'Penjelasan sementara yang diajukan berdasarkan bukti awal untuk diuji melalui penelitian.' },
+            { word: 'Experiment', id: 'Eksperimen', def: 'Prosedur ilmiah yang dilakukan untuk menguji hipotesis, membuat penemuan, atau menunjukkan fakta yang diketahui.' },
+            { word: 'Variable', id: 'Variabel', def: 'Elemen, ciri, atau faktor yang dapat diubah atau diukur dalam suatu eksperimen.' },
+            { word: 'Matter', id: 'Materi', def: 'Segala sesuatu yang memiliki massa dan menempati ruang (memiliki volume).' },
+            { word: 'Energy', id: 'Energi', def: 'Kemampuan untuk melakukan kerja atau menyebabkan perubahan. Ada dalam bentuk panas, cahaya, dan gerak.' },
+            { word: 'Atom', id: 'Atom', def: 'Unit terkecil dari suatu unsur kimia, terdiri dari proton, neutron, dan elektron.' },
+            { word: 'Molecule', id: 'Molekul', def: 'Sekelompok atom yang terikat bersama, merupakan unit fundamental terkecil dari senyawa kimia.' },
+            { word: 'Cell', id: 'Sel', def: 'Unit struktural dan fungsional dasar dari semua organisme hidup.' },
+            { word: 'DNA', id: 'DNA', def: 'Asam deoksiribonukleat, molekul yang mengandung instruksi genetik untuk kehidupan.' },
+            { word: 'Ecosystem', id: 'Ekosistem', def: 'Komunitas organisme hidup yang berinteraksi dengan lingkungan fisiknya.' },
+            { word: 'Force', id: 'Gaya', def: 'Dorongan atau tarikan yang dapat mengubah gerak suatu benda.' },
+            { word: 'Gravity', id: 'Gravitasi', def: 'Gaya tarik menarik antara benda-benda yang bermassa; memberikan berat pada benda.' },
+            { word: 'Temperature', id: 'Suhu', def: 'Ukuran energi kinetik rata-rata partikel dalam suatu zat; menunjukkan panas atau dinginnya sesuatu.' },
+            { word: 'Density', id: 'Massa Jenis', def: 'Massa per satuan volume suatu zat (seberapa rapat materi tersebut).' },
+            { word: 'pH', id: 'pH', def: 'Skala dari 0 hingga 14 yang mengukur seberapa asam atau basa suatu zat.' }
+        ];
+
+        const vocabGrid = document.getElementById('vocabGrid');
+        vocabData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'vocab-item';
+            div.draggable = false; // not draggable, but clickable
+            div.innerHTML = `
+                <span class="vocab-word">${item.word}</span>
+                <span class="vocab-def"><strong>🇮🇩 ${item.id}</strong><br>${item.def}</span>
+                <span class="drag-hint">👆 click to reveal</span>
+            `;
+            // Click to toggle definition (instead of drag, because drag is used for matching)
+            div.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                // Close others? optional: keep it simple
+            });
+            vocabGrid.appendChild(div);
         });
 
         // =============================================================
-        // 2. QUIZ SYSTEM — 20 pertanyaan
+        // 3. DRAG & DROP MATCHING (Lab Tools)
         // =============================================================
-        const quizData = [
-            // 10 pertanyaan awal (tetap)
-            {
-                question: 'Which branch of science studies the motion of objects, forces, and energy?',
-                options: ['Biology', 'Chemistry', 'Physics', 'Earth Science'],
-                correct: 2,
-                explanation: '✅ Physics! It deals with motion, forces, energy, light, and sound.'
-            }, {
-                question: 'What does "Biology" study?',
-                options: ['Rocks and minerals', 'Living things', 'Chemical reactions', 'Stars and planets'],
-                correct: 1,
-                explanation: '✅ Biology studies living things — plants, animals, humans, and microbes.'
-            }, {
-                question: 'Who is known as the "Father of Algebra"?',
-                options: ['Al-Razi', 'Ibn Al-Haytham', 'Al-Khwarizmi', 'Al-Biruni'],
-                correct: 2,
-                explanation: '✅ Al-Khwarizmi! He wrote foundational books on algebra and introduced algorithms.'
-            }, {
-                question: 'Which scientist discovered how vision works and made contributions to optics?',
-                options: ['Al-Biruni', 'Ibn Al-Haytham', 'B.J. Habibie', 'Al-Razi'],
-                correct: 1,
-                explanation: '✅ Ibn Al-Haytham! He proved that light enters the eye and is the father of modern optics.'
-            }, {
-                question: 'Which branch of science studies the atmosphere, weather, and climate?',
-                options: ['Meteorology', 'Geology', 'Astronomy', 'Hydrology'],
-                correct: 0,
-                explanation: '✅ Meteorology! It focuses on the atmosphere, weather patterns, and climate.'
-            }, {
-                question: 'What does "Earth Science" include?',
-                options: ['Only rocks', 'Only oceans', 'Land, water, atmosphere, and natural processes', 'Only weather'],
-                correct: 2,
-                explanation: '✅ Earth Science covers the land, water, atmosphere, and all natural processes on Earth.'
-            }, {
-                question: 'Who was the Indonesian aerospace engineer and 3rd President of Indonesia?',
-                options: ['R.A. Kartini', 'B.J. Habibie', 'Tjokorda Raka Sukawati', 'Bambang Brodjonegoro'],
-                correct: 1,
-                explanation: '✅ B.J. Habibie! He was a brilliant aerospace engineer and Indonesia\'s 3rd President.'
-            }, {
-                question: 'What does "Chemistry" study?',
-                options: ['Living things', 'Stars and planets', 'Substances, properties, and reactions', 'Earth\'s structure'],
-                correct: 2,
-                explanation: '✅ Chemistry studies substances, their properties, and how they react and change.'
-            }, {
-                question: 'Which field of science studies plants and how they grow?',
-                options: ['Zoology', 'Botany', 'Microbiology', 'Geology'],
-                correct: 1,
-                explanation: '✅ Botany! It\'s the study of plants, their structure, and how they grow.'
-            }, {
-                question: 'What is the study of the universe as a whole, including galaxies and its origin?',
-                options: ['Planetary Astronomy', 'Stellar Astronomy', 'Cosmology', 'Astrophysics'],
-                correct: 2,
-                explanation: '✅ Cosmology! It studies the universe as a whole — its origin, structure, and evolution.'
-            },
-            // 10 pertanyaan tambahan (baru)
-            {
-                question: 'Which sub‑branch of Earth Science studies rocks and minerals?',
-                options: ['Meteorology', 'Geology', 'Hydrology', 'Oceanography'],
-                correct: 1,
-                explanation: '✅ Geology! It focuses on rocks, minerals, and the structure of the Earth.'
-            }, {
-                question: 'What does "Organic Chemistry" study?',
-                options: ['Metals and minerals', 'Carbon compounds in living things', 'Water and its properties',
-                    'Nuclear reactions'
-                ],
-                correct: 1,
-                explanation: '✅ Organic chemistry studies carbon-based compounds, especially those found in living organisms.'
-            }, {
-                question: 'Which scientist was a great physician and also discovered sulfuric acid?',
-                options: ['Al-Razi', 'Ibn Sina', 'Al-Khwarizmi', 'Ibn Al-Haytham'],
-                correct: 0,
-                explanation: '✅ Al-Razi! He was a renowned physician and chemist who discovered sulfuric acid and ethanol.'
-            }, {
-                question: 'What does "Mechanics" study?',
-                options: ['Light and optics', 'Motion, forces, and energy', 'Electricity and magnetism',
-                    'Chemical reactions'
-                ],
-                correct: 1,
-                explanation: '✅ Mechanics is the branch of physics that studies motion, forces, and energy.'
-            }, {
-                question: 'Which Indonesian scientist is known for research on nanomaterials?',
-                options: ['B.J. Habibie', 'Euis Sartika', 'Bambang Brodjonegoro', 'Tjokorda Raka Sukawati'],
-                correct: 1,
-                explanation: '✅ Prof. Dr. Ing. Euis Sartika is a materials scientist specializing in nanomaterials.'
-            }, {
-                question: 'What does "Hydrology" study?',
-                options: ['Rocks and minerals', 'Weather and climate', 'Water on Earth (rivers, lakes, oceans)',
-                    'The atmosphere'
-                ],
-                correct: 2,
-                explanation: '✅ Hydrology is the study of water on Earth, including its distribution and movement.'
-            }, {
-                question: 'Who was the famous traveler who recorded his journeys across the Islamic world?',
-                options: ['Al-Biruni', 'Ibn Battuta', 'Al-Idrisi', 'Marco Polo'],
-                correct: 1,
-                explanation: '✅ Ibn Battuta! He traveled extensively and wrote the "Rihla", a valuable geographical account.'
-            }, {
-                question: 'Which branch of science studies light, reflection, and refraction?',
-                options: ['Mechanics', 'Optics', 'Electricity', 'Acoustics'],
-                correct: 1,
-                explanation: '✅ Optics is the branch of physics that studies light and its properties.'
-            }, {
-                question: 'What does "Stellar Astronomy" focus on?',
-                options: ['Planets and moons', 'Stars and their life cycles', 'Galaxies and the universe',
-                    'Black holes only'
-                ],
-                correct: 1,
-                explanation: '✅ Stellar astronomy studies stars, their formation, evolution, and death.'
-            }, {
-                question: 'Which Indonesian scientist is an expert in economics and development planning?',
-                options: ['B.J. Habibie', 'Bambang Brodjonegoro', 'R.A. Kartini', 'Tjokorda Raka Sukawati'],
-                correct: 1,
-                explanation: '✅ Prof. Dr. Ir. Bambang Brodjonegoro is an economist and development planning expert.'
-            }
+        const matchPairs = [
+            { tool: 'Test Tube', func: 'Holds and mixes small liquids' },
+            { tool: 'Microscope', func: 'Magnifies tiny objects' },
+            { tool: 'Balance Scale', func: 'Measures mass' },
+            { tool: 'Thermometer', func: 'Measures temperature' },
+            { tool: 'Graduated Cylinder', func: 'Measures liquid volume' },
+            { tool: 'Bunsen Burner', func: 'Heats substances with flame' }
         ];
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        let toolsShuffled = shuffle([...matchPairs.map(p => p.tool)]);
+        let funcsShuffled = shuffle([...matchPairs.map(p => p.func)]);
+
+        const toolsCol = document.getElementById('toolsCol');
+        const funcsCol = document.getElementById('functionsCol');
+        const matchFeedback = document.getElementById('matchFeedback');
+
+        toolsCol.innerHTML = '<h5>🔧 Tools</h5>';
+        funcsCol.innerHTML = '<h5>📋 Functions</h5>';
+
+        let draggedItem = null;
+        let matchCount = 0;
+        let matchedTools = new Set();
+        let matchedFuncs = new Set();
+
+        function renderMatchItems() {
+            toolsShuffled.forEach(tool => {
+                const div = document.createElement('div');
+                div.className = 'match-item';
+                div.draggable = true;
+                div.textContent = tool;
+                div.dataset.tool = tool;
+                if (matchedTools.has(tool)) {
+                    div.classList.add('matched');
+                    div.draggable = false;
+                }
+                div.addEventListener('dragstart', handleDragStart);
+                div.addEventListener('dragend', handleDragEnd);
+                toolsCol.appendChild(div);
+            });
+
+            funcsShuffled.forEach(func => {
+                const div = document.createElement('div');
+                div.className = 'match-item droppable';
+                div.textContent = func;
+                div.dataset.func = func;
+                if (matchedFuncs.has(func)) {
+                    div.classList.add('matched');
+                    div.draggable = false;
+                }
+                div.addEventListener('dragover', handleDragOver);
+                div.addEventListener('dragenter', handleDragEnter);
+                div.addEventListener('dragleave', handleDragLeave);
+                div.addEventListener('drop', handleDrop);
+                funcsCol.appendChild(div);
+            });
+        }
+
+        function handleDragStart(e) {
+            if (this.classList.contains('matched')) return;
+            draggedItem = this;
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.style.opacity = '0.6';
+        }
+
+        function handleDragEnd(e) {
+            this.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDragEnter(e) {
+            e.preventDefault();
+            if (!this.classList.contains('matched') && !this.classList.contains('wrong')) {
+                this.style.borderColor = 'var(--primary)';
+                this.style.background = '#EDE9FE';
+            }
+        }
+
+        function handleDragLeave(e) {
+            this.style.borderColor = '#E2E8F0';
+            this.style.background = '';
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            this.style.borderColor = '#E2E8F0';
+            this.style.background = '';
+
+            if (!draggedItem || this.classList.contains('matched') || draggedItem.classList.contains('matched')) {
+                matchFeedback.textContent = '⛔ This item is already matched.';
+                matchFeedback.style.color = 'var(--accent)';
+                return;
+            }
+
+            const toolName = draggedItem.textContent;
+            const funcName = this.textContent;
+
+            const pair = matchPairs.find(p => p.tool === toolName);
+            if (pair && pair.func === funcName) {
+                matchedTools.add(toolName);
+                matchedFuncs.add(funcName);
+                draggedItem.classList.add('matched');
+                draggedItem.draggable = false;
+                this.classList.add('matched');
+                this.draggable = false;
+                matchCount++;
+                matchFeedback.textContent = `✅ Correct! (${matchCount}/${matchPairs.length})`;
+                matchFeedback.style.color = '#10B981';
+
+                if (matchCount === matchPairs.length) {
+                    matchFeedback.textContent = '🎉 All matched! Excellent work!';
+                    matchFeedback.style.color = 'var(--primary)';
+                }
+            } else {
+                this.classList.add('wrong');
+                matchFeedback.textContent = '❌ Wrong match. Try again!';
+                matchFeedback.style.color = '#EF4444';
+                setTimeout(() => {
+                    this.classList.remove('wrong');
+                }, 800);
+            }
+            draggedItem.style.opacity = '1';
+            draggedItem = null;
+        }
+
+        renderMatchItems();
+
+        // =============================================================
+        // 4. QUIZ SYSTEM (20 questions)
+        // =============================================================
+        const quizData = [{
+            question: 'Which branch of science studies the motion of objects, forces, and energy?',
+            options: ['Biology', 'Chemistry', 'Physics', 'Earth Science'],
+            correct: 2,
+            explanation: '✅ Physics! It deals with motion, forces, energy, light, and sound.'
+        }, {
+            question: 'What does "Biology" study?',
+            options: ['Rocks and minerals', 'Living things', 'Chemical reactions', 'Stars and planets'],
+            correct: 1,
+            explanation: '✅ Biology studies living things — plants, animals, humans, and microbes.'
+        }, {
+            question: 'Who is known as the "Father of Algebra"?',
+            options: ['Al-Razi', 'Ibn Al-Haytham', 'Al-Khwarizmi', 'Al-Biruni'],
+            correct: 2,
+            explanation: '✅ Al-Khwarizmi! He wrote foundational books on algebra and introduced algorithms.'
+        }, {
+            question: 'Which scientist discovered how vision works and made contributions to optics?',
+            options: ['Al-Biruni', 'Ibn Al-Haytham', 'B.J. Habibie', 'Al-Razi'],
+            correct: 1,
+            explanation: '✅ Ibn Al-Haytham! He proved that light enters the eye and is the father of modern optics.'
+        }, {
+            question: 'Which branch of science studies the atmosphere, weather, and climate?',
+            options: ['Meteorology', 'Geology', 'Astronomy', 'Hydrology'],
+            correct: 0,
+            explanation: '✅ Meteorology! It focuses on the atmosphere, weather patterns, and climate.'
+        }, {
+            question: 'What does "Earth Science" include?',
+            options: ['Only rocks', 'Only oceans', 'Land, water, atmosphere, and natural processes', 'Only weather'],
+            correct: 2,
+            explanation: '✅ Earth Science covers the land, water, atmosphere, and all natural processes on Earth.'
+        }, {
+            question: 'Who was the Indonesian aerospace engineer and 3rd President of Indonesia?',
+            options: ['R.A. Kartini', 'B.J. Habibie', 'Tjokorda Raka Sukawati', 'Bambang Brodjonegoro'],
+            correct: 1,
+            explanation: '✅ B.J. Habibie! He was a brilliant aerospace engineer and Indonesia\'s 3rd President.'
+        }, {
+            question: 'What does "Chemistry" study?',
+            options: ['Living things', 'Stars and planets', 'Substances, properties, and reactions', 'Earth\'s structure'],
+            correct: 2,
+            explanation: '✅ Chemistry studies substances, their properties, and how they react and change.'
+        }, {
+            question: 'Which field of science studies plants and how they grow?',
+            options: ['Zoology', 'Botany', 'Microbiology', 'Geology'],
+            correct: 1,
+            explanation: '✅ Botany! It\'s the study of plants, their structure, and how they grow.'
+        }, {
+            question: 'What is the study of the universe as a whole, including galaxies and its origin?',
+            options: ['Planetary Astronomy', 'Stellar Astronomy', 'Cosmology', 'Astrophysics'],
+            correct: 2,
+            explanation: '✅ Cosmology! It studies the universe as a whole — its origin, structure, and evolution.'
+        }, {
+            question: 'Which sub‑branch of Earth Science studies rocks and minerals?',
+            options: ['Meteorology', 'Geology', 'Hydrology', 'Oceanography'],
+            correct: 1,
+            explanation: '✅ Geology! It focuses on rocks, minerals, and the structure of the Earth.'
+        }, {
+            question: 'What does "Organic Chemistry" study?',
+            options: ['Metals and minerals', 'Carbon compounds in living things', 'Water and its properties',
+                'Nuclear reactions'
+            ],
+            correct: 1,
+            explanation: '✅ Organic chemistry studies carbon-based compounds, especially those found in living organisms.'
+        }, {
+            question: 'Which scientist was a great physician and also discovered sulfuric acid?',
+            options: ['Al-Razi', 'Ibn Sina', 'Al-Khwarizmi', 'Ibn Al-Haytham'],
+            correct: 0,
+            explanation: '✅ Al-Razi! He was a renowned physician and chemist who discovered sulfuric acid and ethanol.'
+        }, {
+            question: 'What does "Mechanics" study?',
+            options: ['Light and optics', 'Motion, forces, and energy', 'Electricity and magnetism',
+                'Chemical reactions'
+            ],
+            correct: 1,
+            explanation: '✅ Mechanics is the branch of physics that studies motion, forces, and energy.'
+        }, {
+            question: 'Which Indonesian scientist is known for research on nanomaterials?',
+            options: ['B.J. Habibie', 'Euis Sartika', 'Bambang Brodjonegoro', 'Tjokorda Raka Sukawati'],
+            correct: 1,
+            explanation: '✅ Prof. Dr. Ing. Euis Sartika is a materials scientist specializing in nanomaterials.'
+        }, {
+            question: 'What does "Hydrology" study?',
+            options: ['Rocks and minerals', 'Weather and climate', 'Water on Earth (rivers, lakes, oceans)',
+                'The atmosphere'
+            ],
+            correct: 2,
+            explanation: '✅ Hydrology is the study of water on Earth, including its distribution and movement.'
+        }, {
+            question: 'Who was the famous traveler who recorded his journeys across the Islamic world?',
+            options: ['Al-Biruni', 'Ibn Battuta', 'Al-Idrisi', 'Marco Polo'],
+            correct: 1,
+            explanation: '✅ Ibn Battuta! He traveled extensively and wrote the "Rihla", a valuable geographical account.'
+        }, {
+            question: 'Which branch of physics studies light, reflection, and refraction?',
+            options: ['Mechanics', 'Optics', 'Electricity', 'Acoustics'],
+            correct: 1,
+            explanation: '✅ Optics is the branch of physics that studies light and its properties.'
+        }, {
+            question: 'What does "Stellar Astronomy" focus on?',
+            options: ['Planets and moons', 'Stars and their life cycles', 'Galaxies and the universe',
+                'Black holes only'
+            ],
+            correct: 1,
+            explanation: '✅ Stellar astronomy studies stars, their formation, evolution, and death.'
+        }, {
+            question: 'Which Indonesian scientist is an expert in economics and development planning?',
+            options: ['B.J. Habibie', 'Bambang Brodjonegoro', 'R.A. Kartini', 'Tjokorda Raka Sukawati'],
+            correct: 1,
+            explanation: '✅ Prof. Dr. Ir. Bambang Brodjonegoro is an economist and development planning expert.'
+        }];
 
         let currentQuestion = 0;
         let score = 0;
         let answered = false;
-        let selectedAnswer = null;
         let userAnswers = new Array(quizData.length).fill(null);
 
         const questionText = document.getElementById('questionText');
@@ -1541,7 +2157,6 @@
                 btn.innerHTML = `<span class="opt-label">${labels[idx]}</span> ${opt}`;
                 btn.dataset.index = idx;
                 btn.addEventListener('click', () => handleAnswer(idx));
-                // If already answered, show state
                 if (userAnswers[currentQuestion] !== null) {
                     btn.disabled = true;
                     if (idx === data.correct) btn.classList.add('correct');
@@ -1550,7 +2165,6 @@
                 optionsContainer.appendChild(btn);
             });
 
-            // Update feedback if already answered
             if (userAnswers[currentQuestion] !== null) {
                 const isCorrect = userAnswers[currentQuestion] === data.correct;
                 feedbackEl.textContent = isCorrect ? `✅ ${data.explanation}` : `❌ ${data.explanation}`;
@@ -1562,7 +2176,6 @@
                 answered = false;
             }
 
-            // Update buttons
             prevBtn.disabled = currentQuestion === 0;
             const isLast = currentQuestion === quizData.length - 1;
             nextBtn.innerHTML = isLast ? 'Finish <i class="fas fa-flag-checkered"></i>' : 'Next <i class="fas fa-arrow-right"></i>';
@@ -1578,7 +2191,6 @@
             userAnswers[currentQuestion] = idx;
             if (isCorrect) score++;
 
-            // Disable all buttons and show correct/wrong
             const btns = optionsContainer.querySelectorAll('button');
             btns.forEach((btn, i) => {
                 btn.disabled = true;
@@ -1594,7 +2206,6 @@
         }
 
         function updateScore() {
-            // Recalculate score from userAnswers
             let correctCount = 0;
             quizData.forEach((data, idx) => {
                 if (userAnswers[idx] !== null && userAnswers[idx] === data.correct) correctCount++;
@@ -1616,7 +2227,6 @@
         nextBtn.addEventListener('click', () => {
             const isLast = currentQuestion === quizData.length - 1;
             if (isLast) {
-                // Show final result
                 const total = quizData.length;
                 const correct = score;
                 const pct = Math.round((correct / total) * 100);
@@ -1656,21 +2266,17 @@
             currentQuestion = 0;
             score = 0;
             answered = false;
-            selectedAnswer = null;
             userAnswers = new Array(quizData.length).fill(null);
             renderQuestion();
             updateScore();
-            // Close modal if open
             closeModal();
-            // Scroll to quiz
             document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Expose reset for modal button
         window.resetQuiz = resetQuiz;
 
         // =============================================================
-        // 3. SMOOTH SCROLL FOR NAV
+        // 5. SMOOTH SCROLL FOR NAV
         // =============================================================
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1680,19 +2286,18 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-                // Update active state
                 document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
         // =============================================================
-        // 4. INIT
+        // 6. INIT
         // =============================================================
         renderQuestion();
         updateScore();
 
-        console.log('🔬 Science website loaded! Click any card to learn more. Total quiz questions: ' + quizData.length);
+        console.log('🔬 Science website loaded! Total quiz questions: ' + quizData.length);
     </script>
 
 </body>
